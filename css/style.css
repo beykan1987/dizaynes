@@ -369,3 +369,15 @@ a{color:var(--ink)}a:hover{color:var(--accent-dark)}
 .fl-line{stroke:#B9AFA5;stroke-width:.8}
 .fl-dots .o{fill:none;stroke:var(--ink);stroke-width:.85}
 .fl-dots .f{fill:#D9A94E}
+
+/* Ürünler artık malzeme şeridinin hemen altında */
+.urunler{padding-top:96px;padding-bottom:40px}
+
+/* Mobil alt bilgi */
+@media (max-width:820px){
+  .site-footer .wrap{align-items:center;text-align:center;gap:24px;padding-top:40px;padding-bottom:32px}
+  .foot-logo{width:100%;max-width:340px;margin:0 auto}
+  .foot-row{flex-direction:column;align-items:center;gap:18px}
+  .foot-row .nav{justify-content:center;gap:4px 18px}
+  .social-foot{justify-content:center}
+}
