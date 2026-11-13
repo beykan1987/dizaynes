@@ -1,0 +1,33 @@
+name: Instagram bağlantı testi (paylaşım yapmaz)
+on: workflow_dispatch
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Anahtarı ve @dizayn_es bağlantısını kontrol et
+        env:
+          T: ${{ secrets.IG_ACCESS_TOKEN }}
+        run: |
+          if [ -z "$T" ]; then echo "HATA: IG_ACCESS_TOKEN secret'ı yok"; exit 1; fi
+          echo "Anahtar uzunluğu: ${#T}"
+          python3 - <<'PY'
+          import os, json, urllib.request, urllib.parse, urllib.error
+          T = os.environ['T']; API = 'https://graph.facebook.com/v21.0'
+          def get(p):
+              u = API + p + ('&' if '?' in p else '?') + 'access_token=' + urllib.parse.quote(T)
+              try:
+                  with urllib.request.urlopen(u, timeout=30) as r: return json.load(r)
+              except urllib.error.HTTPError as e:
+                  return {'HATA': e.code, 'yanit': e.read().decode().replace(T, '***')}
+          me = get('/me?fields=id,name')
+          print('Anahtarın sahibi:', me)
+          dbg = get('/debug_token?input_token=' + urllib.parse.quote(T))
+          d = dbg.get('data', {})
+          print('Tür:', d.get('type'), '| Geçerli:', d.get('is_valid'), '| Bitiş (0=süresiz):', d.get('expires_at'), '| İzinler:', d.get('scopes'))
+          pg = get('/me?fields=name,instagram_business_account{id,username,followers_count,media_count}')
+          if pg.get('instagram_business_account'):
+              print('Sayfa anahtarı. Bağlı Instagram:', pg['instagram_business_account'])
+          acc = get('/me/accounts?fields=name,instagram_business_account{id,username}&limit=100')
+          for p in acc.get('data', []):
+              print('Sayfa:', p.get('name'), '-> Instagram:', p.get('instagram_business_account'))
+          PY

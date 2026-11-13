@@ -1,0 +1,18 @@
+name: Instagram paylaş (@dizayn_es)
+on:
+  workflow_dispatch:
+    inputs:
+      id: {description: "Paylaşım kimliği (social/<id>-post.jpg vb.)", required: true}
+      ne: {description: "post, hikaye, ikisi, reel veya reelsadece", required: true, default: post}
+concurrency:
+  group: instagram-paylas
+  cancel-in-progress: false
+jobs:
+  paylas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 paylasim/ig_publish.py "${{ github.event.inputs.id }}" "${{ github.event.inputs.ne }}"
+        env:
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ vars.IG_USER_ID }}

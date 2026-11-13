@@ -39,5 +39,6 @@ jobs:
             mirror --reverse --verbose --parallel=2 \
               --exclude-glob .git* --exclude-glob .git/ --exclude-glob .github/ \
               --exclude-glob README.md --exclude-glob CNAME --exclude-glob .nojekyll \
+              --exclude-glob paylasim/ --exclude-glob CLAUDE.md \
               ./ $FTP_DIR/;
             bye"

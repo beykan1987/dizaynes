@@ -45,3 +45,5 @@ AddOutputFilterByType DEFLATE text/html text/css application/javascript image/sv
 </IfModule>
 
 AddType image/webp .webp
+AddType video/mp4 .mp4
+AddType image/jpeg .jpg .jpeg
