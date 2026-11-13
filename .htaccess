@@ -12,6 +12,12 @@ RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP_HOST} ^www\. [NC]
 RewriteRule ^(.*)$ https://dizaynes.com/$1 [R=301,L]
 
+# Eski WordPress dosyalarını dışarıya kapat (404)
+RewriteRule ^(wp-admin|wp-content|wp-includes|wp-json)(/.*)?$ - [R=404,L]
+RewriteRule ^(wp-[^/]*\.php|xmlrpc\.php|index\.php|readme\.html|license\.txt|wp-config[^/]*)$ - [R=404,NC,L]
+RewriteCond %{QUERY_STRING} (^|&)(rest_route|p|page_id|author)= [NC]
+RewriteRule ^$ - [R=404,L]
+
 # Eski WordPress adresleri -> yeni karşılıkları (kalıcı 301)
 RewriteRule ^hizmetlerimiz/?$ /#hizmetler [R=301,NE,L]
 RewriteRule ^projeler/?$ /#projeler [R=301,NE,L]
