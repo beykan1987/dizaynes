@@ -54,7 +54,8 @@
     lbCat.textContent = c.getAttribute('data-cat');
     lbTitle.textContent = c.querySelector('strong').textContent;
     lbText.textContent = c.querySelector('.meta span:last-child').textContent;
-    lbLink.href = c.getAttribute('data-url');
+    var msg = 'Merhaba, sitenizde "' + lbTitle.textContent + '" projesini gördüm. Benzer bir çalışma için bilgi almak istiyorum.';
+    lbLink.href = 'https://wa.me/905333061802?text=' + encodeURIComponent(msg);
   }
   function open(idx) {
     lastFocus = document.activeElement;
