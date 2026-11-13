@@ -361,3 +361,11 @@ a{color:var(--ink)}a:hover{color:var(--accent-dark)}
   .hero-kicker{font-size:11px;letter-spacing:.08em}
 }
 @media (max-width:380px){.logo-svg{height:42px}}
+
+/* Alt bilgi logosu (üst logonun açık zemin sürümü) */
+.foot-logo{display:block;width:min(100%,560px);height:auto;overflow:visible}
+.fl-word{font-family:'Josefin Sans',sans-serif;font-weight:300;font-size:34px;fill:var(--ink)}
+.fl-tag{font-family:'Josefin Sans',sans-serif;font-weight:400;font-size:7.4px;fill:var(--muted)}
+.fl-line{stroke:#B9AFA5;stroke-width:.8}
+.fl-dots .o{fill:none;stroke:var(--ink);stroke-width:.85}
+.fl-dots .f{fill:#D9A94E}
