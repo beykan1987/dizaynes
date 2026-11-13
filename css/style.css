@@ -307,3 +307,4 @@ a{color:var(--ink)}a:hover{color:var(--accent-dark)}
 .post-next{margin-top:56px;border-top:1.5px solid var(--ink);padding-top:24px;display:flex;flex-direction:column;gap:8px}
 .post-next .mono{color:var(--muted)}
 .post-next a{font-size:28px;font-weight:700;text-decoration:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}

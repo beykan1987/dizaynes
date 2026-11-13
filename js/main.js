@@ -78,6 +78,18 @@
   document.getElementById('lbPrev').addEventListener('click', function () { fill(current - 1); });
   document.getElementById('lbAsk').addEventListener('click', close);
   lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+
+  // Adres #proje-... ise o projeyi doğrudan aç (eski proje bağlantıları buraya yönlenir)
+  function openFromHash() {
+    var id = decodeURIComponent(location.hash.slice(1));
+    if (id.indexOf('proje-') !== 0) return;
+    var idx = cards.findIndex(function (c) { return c.id === id; });
+    if (idx < 0) return;
+    cards[idx].scrollIntoView({ block: 'center' });
+    open(idx);
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
   lb.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') close();
     if (e.key === 'ArrowRight') fill(current + 1);
