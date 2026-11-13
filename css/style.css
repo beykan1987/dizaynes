@@ -308,3 +308,15 @@ a{color:var(--ink)}a:hover{color:var(--accent-dark)}
 .post-next .mono{color:var(--muted)}
 .post-next a{font-size:28px;font-weight:700;text-decoration:none}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* WhatsApp */
+.soc-wa{color:#25D366;box-shadow:inset 0 0 0 1.5px #25D366}
+.soc-wa:hover{background:#25D366;color:#0B3D1E;box-shadow:none}
+.wa-card{justify-content:center}
+.wa-badge{width:64px;height:64px;border-radius:18px;background:#25D366;color:#0B3D1E;display:inline-flex;align-items:center;justify-content:center}
+.wa-card p{margin:0;color:#CFC7BE;line-height:1.65;font-size:17px}
+.wa-list{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.wa-list li{border:1.5px solid #3A3530;border-radius:999px;padding:8px 14px;font-size:14px;color:#F2EEE8}
+.btn-wa{background:#25D366;color:#0B3D1E;align-self:flex-start;min-height:56px;font-size:17px;padding:0 28px}
+.btn-wa:hover{background:#3BE07A;color:#0B3D1E}
+.wa-num{font-size:14px;color:#CFC7BE}

@@ -7,7 +7,7 @@ Dizaynes Sanat Tasarım Bilişim Ltd. Şti. web sitesi. Derleme gerektirmeyen st
 ```
 index.html     Tek sayfa: hero, hizmetler, projeler, süreç, hakkımızda, SSS, iletişim
 css/style.css  Tüm stiller (renkler en üstteki :root değişkenlerinde)
-js/main.js     Kayan galeri, proje filtresi, proje penceresi, iletişim formu
+js/main.js     Kayan galeri, proje filtresi, proje penceresi
 img/           Görseller (webp)
 ```
 
@@ -19,9 +19,9 @@ img/           Görseller (webp)
 
 `main` dalına gönderilen her değişiklik birkaç dakika içinde yayına çıkar.
 
-## İletişim formu
+## İletişim
 
-Form şu an ziyaretçinin e-posta uygulamasını `info@dizaynes.com` adresine hazır mesajla açar. Doğrudan e-posta göndermesi için Formspree veya Web3Forms gibi bir form servisi bağlanabilir.
+İletişim bölümünde form yok; ziyaretçiler WhatsApp'a (0533 306 18 02) hazır mesajla yönlenir. Üst menüde de WhatsApp ikonu var.
 
 ## SEO
 
