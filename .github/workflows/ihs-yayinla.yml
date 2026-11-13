@@ -1,6 +1,6 @@
 # main dalına gelen her değişikliği İHS hostinge FTP ile yükler.
 # Gerekli GitHub "Secrets": FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
-# İsteğe bağlı "Variables": FTP_DIR (varsayılan: public_html/), FTP_PROTOCOL (varsayılan: ftps)
+# İsteğe bağlı "Variables": FTP_DIR (varsayılan: public_html/), FTP_PROTOCOL (varsayılan: ftp)
 name: İHS'e yayınla
 
 on:
@@ -25,7 +25,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftp' }}
           server-dir: ${{ vars.FTP_DIR || 'public_html/' }}
           exclude: |
             **/.git*
