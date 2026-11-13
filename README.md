@@ -36,7 +36,7 @@ img/           Görseller (webp)
 `main` dalına gelen her değişiklik `.github/workflows/ihs-yayinla.yml` ile FTP üzerinden İHS'teki hostinge yüklenir.
 
 - GitHub → Settings → Secrets and variables → Actions → **Secrets**: `FTP_SERVER`, `FTP_USERNAME`, `FTP_PASSWORD`
-- İsteğe bağlı **Variables**: `FTP_DIR` (varsayılan `public_html/`), `FTP_PROTOCOL` (varsayılan `ftp`; İHS sunucusu FTPS veri bağlantısını kesiyor)
+- İsteğe bağlı **Variables**: `FTP_DIR` (varsayılan `httpdocs/`, İHS Plesk), `FTP_PROTOCOL` (varsayılan `ftp`; İHS sunucusu FTPS veri bağlantısını kesiyor)
 - Elle yayınlamak için: Actions → "İHS'e yayınla" → Run workflow
 - `.htaccess`: HTTPS + www yönlendirmesi, eski WordPress adreslerinden kalıcı (301) yönlendirmeler, 404 sayfası, önbellek.
 
