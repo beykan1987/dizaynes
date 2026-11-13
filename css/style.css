@@ -436,3 +436,4 @@ a{color:var(--ink)}a:hover{color:var(--accent-dark)}
   .strip .strip-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;padding:0 20px;gap:10px 16px}
   .strip .strip-dup{display:none !important}
 }
+.post-card .zoom{aspect-ratio:4/3}
