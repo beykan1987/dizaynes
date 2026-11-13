@@ -337,3 +337,5 @@ a{color:var(--ink)}a:hover{color:var(--accent-dark)}
 .urun-wa{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:#25D366;color:#0B3D1E;font-weight:700;font-size:14px;text-decoration:none;flex:0 0 auto}
 .urun-wa:hover{background:#3BE07A;color:#0B3D1E}
 .sec-head>.urun-nav{flex-direction:row;gap:8px}
+.urun-wa{width:48px;height:48px;min-height:0;padding:0;border-radius:50%;justify-content:center;box-shadow:0 6px 16px rgba(37,211,102,.35);transition:transform .25s var(--ease),background .25s}
+.urun-wa:hover{transform:scale(1.08)}
