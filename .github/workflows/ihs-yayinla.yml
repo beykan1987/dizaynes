@@ -1,0 +1,36 @@
+# main dalına gelen her değişikliği İHS hostinge FTP ile yükler.
+# Gerekli GitHub "Secrets": FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
+# İsteğe bağlı "Variables": FTP_DIR (varsayılan: public_html/), FTP_PROTOCOL (varsayılan: ftps)
+name: İHS'e yayınla
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ihs-yayin
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu al
+        uses: actions/checkout@v4
+
+      - name: FTP ile yükle
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ vars.FTP_PROTOCOL || 'ftps' }}
+          server-dir: ${{ vars.FTP_DIR || 'public_html/' }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            README.md
+            CNAME
+            .nojekyll
