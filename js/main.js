@@ -115,3 +115,16 @@
     });
   }
 })();
+
+// Ürünler vitrini: ok butonları
+(function () {
+  var track = document.getElementById('urunTrack');
+  if (!track) return;
+  function step(dir) {
+    var card = track.querySelector('.urun');
+    var amount = card ? card.getBoundingClientRect().width + 20 : 300;
+    track.scrollBy({ left: dir * amount * 2, behavior: 'smooth' });
+  }
+  document.getElementById('urunPrev').addEventListener('click', function () { step(-1); });
+  document.getElementById('urunNext').addEventListener('click', function () { step(1); });
+})();
