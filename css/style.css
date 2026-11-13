@@ -25,10 +25,20 @@ a{color:var(--ink)}a:hover{color:var(--accent-dark)}
 .skip:focus{left:8px;color:var(--ground)}
 
 /* Header */
-.site-header{position:sticky;top:0;z-index:20;background:rgba(242,238,232,.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
-.logo{display:flex;align-items:center;min-height:44px}
-.logo img{height:34px;width:auto;display:block}
+.site-header{position:sticky;top:0;z-index:20;background:rgba(43,38,34,.96);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid #3E3732}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px 24px;flex-wrap:wrap;padding-top:8px;padding-bottom:8px}
+.site-header .nav a{color:#F2EEE8}
+.site-header .nav a:hover{color:#FFFFFF}
+.site-header .nav a::after{background:#EAC886}
+.logo{display:flex;align-items:center;min-height:44px;text-decoration:none}
+.logo-svg{height:62px;width:auto;display:block;overflow:visible}
+.lg-word{font-family:'Josefin Sans',sans-serif;font-weight:300;font-size:34px;fill:#FFFFFF}
+.lg-tag{font-family:'Josefin Sans',sans-serif;font-weight:400;font-size:7.4px;fill:#D8CFC6}
+.lg-line{stroke:#A79C92;stroke-width:.8}
+.lg-dots .o{fill:none;stroke:#F2EEE8;stroke-width:.85}
+.lg-dots .f{fill:#EAC886}
+.btn-gold{background:#EAC886;color:#161412}.btn-gold:hover{background:#F2D69E;color:#161412}
+@media (max-width:560px){.logo-svg{height:50px}}
 .nav{display:flex;gap:22px;flex-wrap:wrap;align-items:center}
 .nav a{text-decoration:none;font-weight:600;font-size:15px;padding:10px 4px;min-height:44px;display:inline-flex;align-items:center;position:relative}
 .nav a::after{content:"";position:absolute;left:4px;right:4px;bottom:8px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
