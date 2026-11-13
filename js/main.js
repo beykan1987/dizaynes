@@ -116,14 +116,63 @@
   }
 })();
 
-// Ürünler vitrini: ok butonları
+// Ürünler vitrini: kendiliğinden kayar, fare üzerindeyken durur; oklar da çalışır
 (function () {
   var track = document.getElementById('urunTrack');
   if (!track) return;
+  var items = Array.prototype.slice.call(track.querySelectorAll('.urun'));
+  if (!items.length) return;
+  // Kesintisiz döngü için kartları bir kez çoğalt
+  items.forEach(function (li) {
+    var c = li.cloneNode(true);
+    c.setAttribute('aria-hidden', 'true');
+    c.classList.add('urun-dup');
+    Array.prototype.forEach.call(c.querySelectorAll('a,button'), function (el) { el.setAttribute('tabindex', '-1'); });
+    track.appendChild(c);
+  });
+  track.style.scrollSnapType = 'none';
+  var firstDup = track.querySelector('.urun-dup');
+  function loopW() { return firstDup.offsetLeft - items[0].offsetLeft; }
+
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var speed = 32;            // piksel / saniye
+  var paused = false, hover = false, visible = true, resumeAt = 0;
+  var pos = track.scrollLeft, last = 0;
+
+  function frame(t) {
+    var dt = last ? Math.min((t - last) / 1000, 0.05) : 0;
+    last = t;
+    if (Math.abs(track.scrollLeft - pos) > 2) pos = track.scrollLeft;   // kullanıcı elle kaydırdıysa
+    if (!reduce && !paused && !hover && visible && t >= resumeAt) {
+      pos += speed * dt;
+      var w = loopW();
+      if (w > 0 && pos >= w) pos -= w;
+      track.scrollLeft = pos;
+    }
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+
+  function pauseFor(ms) { resumeAt = performance.now() + ms; }
+  track.addEventListener('mouseenter', function () { hover = true; });
+  track.addEventListener('mouseleave', function () { hover = false; pos = track.scrollLeft; });
+  track.addEventListener('focusin', function () { paused = true; });
+  track.addEventListener('focusout', function () { paused = false; pos = track.scrollLeft; });
+  track.addEventListener('touchstart', function () { paused = true; }, { passive: true });
+  track.addEventListener('touchend', function () { paused = false; pos = track.scrollLeft; pauseFor(3000); }, { passive: true });
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(track);
+  }
+
   function step(dir) {
-    var card = track.querySelector('.urun');
-    var amount = card ? card.getBoundingClientRect().width + 20 : 300;
-    track.scrollBy({ left: dir * amount * 2, behavior: 'smooth' });
+    var card = items[0];
+    var amount = (card.getBoundingClientRect().width + 20) * 2;
+    var w = loopW();
+    if (dir < 0 && track.scrollLeft < amount && w > 0) { track.scrollLeft += w; }
+    if (dir > 0 && track.scrollLeft + amount >= w * 2 - track.clientWidth && w > 0) { track.scrollLeft -= w; }
+    pauseFor(4000);
+    track.scrollBy({ left: dir * amount, behavior: 'smooth' });
+    setTimeout(function () { pos = track.scrollLeft; }, 700);
   }
   document.getElementById('urunPrev').addEventListener('click', function () { step(-1); });
   document.getElementById('urunNext').addEventListener('click', function () { step(1); });
