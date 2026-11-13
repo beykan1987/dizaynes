@@ -421,3 +421,18 @@ a{color:var(--ink)}a:hover{color:var(--accent-dark)}
   .site-footer .foot-logo{width:240px}
   .site-footer .foot-row>span{width:100%;text-align:center}
 }
+
+/* Malzeme şeridi: masaüstünde sabit, mobilde tek satır kayan şerit */
+.strip .strip-loop,.strip .strip-dup{display:none}
+@media (max-width:820px){
+  .strip{padding:16px 0;overflow:hidden}
+  .strip .strip-track{flex-wrap:nowrap;justify-content:flex-start;width:max-content;max-width:none;margin:0;padding:0;gap:0 20px;animation:marq 26s linear infinite}
+  .strip .strip-loop,.strip .strip-dup{display:block}
+  .strip span.strip-dup{display:inline}
+  .strip span{font-size:19px;white-space:nowrap}
+  .strip i{flex:0 0 auto;width:7px;height:7px}
+}
+@media (max-width:820px) and (prefers-reduced-motion:reduce){
+  .strip .strip-track{animation:none;flex-wrap:wrap;width:auto;justify-content:center;padding:0 20px;gap:10px 16px}
+  .strip .strip-dup{display:none !important}
+}

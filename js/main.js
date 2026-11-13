@@ -128,3 +128,15 @@
   document.getElementById('urunPrev').addEventListener('click', function () { step(-1); });
   document.getElementById('urunNext').addEventListener('click', function () { step(1); });
 })();
+
+// Malzeme şeridi: mobilde kesintisiz kayan şerit için içeriği bir kez çoğalt
+(function () {
+  var t = document.getElementById('stripTrack');
+  if (!t) return;
+  Array.prototype.slice.call(t.children).forEach(function (el) {
+    var c = el.cloneNode(true);
+    c.setAttribute('aria-hidden', 'true');
+    c.classList.add('strip-dup');
+    t.appendChild(c);
+  });
+})();
